@@ -20,8 +20,16 @@ try {
   nonExistentFunction()
 } catch (error) {
   rollbar.error(error)
-  // expected output: ReferenceError: nonExistentFunction is not defined
-  // Note - error messages will vary depending on browser
+}
+try {
+  nonExistentFunction()
+} catch (error) {
+  rollbar.critical('critical error')
+}
+try {
+  nonExistentFunction()
+} catch (error) {
+  rollbar.warning('im warning you!')
 }
 
 app.use(rollbar.errorHandler())
