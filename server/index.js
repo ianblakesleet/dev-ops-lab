@@ -15,14 +15,14 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
   rollbar.info('file served')
 })
+const port = process.env.PORT || 4545
 try {
   nonExistentFunction()
 } catch (error) {
-  rollbar.log(error)
+  rollbar.error(error)
   // expected output: ReferenceError: nonExistentFunction is not defined
   // Note - error messages will vary depending on browser
 }
 
-const port = process.env.PORT || 4545
 app.use(rollbar.errorHandler())
 app.listen(port, () => console.log(`Take us to warp ${port}!`))
