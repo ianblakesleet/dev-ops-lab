@@ -16,6 +16,14 @@ app.get('/', (req, res) => {
   rollbar.info('file served')
 })
 const port = process.env.PORT || 4545
+
+let inputText = ['1', 'b', 'hello']
+
+app.get('/user/api', (req, res) => {
+  rollbar.log('succesfully recieved input text')
+  res.status(200).send(inputText)
+})
+
 try {
   nonExistentFunction()
 } catch (error) {

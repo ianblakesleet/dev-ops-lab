@@ -5,8 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
     <h1>hello</h1>
+    <form>
+        <input id="bleh"type="text">
+        <button id="submitButton">Submit</button>
+    </form>
+    <script>
+        let submitBtn = document.querySelector("#submitButton")
+        let inputField = document.querySelector('#bleh')
+        submitBtn.addEventListener('click', (e)=>{
+            e.preventDefault()
+            axios.get('/user/api')
+            .then(res =>{
+                inputField.value = ''
+                console.log(res.data)
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+        })
+
+    </script>
 </body>
 </html>
